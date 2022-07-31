@@ -6,15 +6,15 @@ LABEL description="Docker Container with a complete build environment for Tasmot
       organization="https://github.com/tasmota"       
 
 # Install platformio. 
-RUN pip install --upgrade pip &&\ 
-    pip install --upgrade platformio
+RUN linux32 pip install --upgrade pip &&\ 
+    linux32 pip install --upgrade platformio
 
 # Init project
 COPY init_pio_tasmota /init_pio_tasmota
 
 # Install project dependencies using a init project.
 RUN cd /init_pio_tasmota &&\ 
-    pio run &&\
+    linux32 pio run &&\
     cd ../ &&\ 
     rm -fr init_pio_tasmota &&\ 
     cp -r /root/.platformio / &&\ 
