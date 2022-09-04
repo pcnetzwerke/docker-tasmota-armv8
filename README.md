@@ -22,8 +22,8 @@ To check compiling logs use `cat docker-tasmota.log`
 ## How to use the docker container
 1. Clone this repo and cd to the dir where its cloned:    
     ```
-    git clone https://github.com/tasmota/docker-tasmota
-    cd docker-tasmota
+    git clone https://github.com/pcnetzwerke/docker-tasmota-armv8
+    cd docker-tasmota-armv8
     ```
 
 2. Run this to build the docker container:
