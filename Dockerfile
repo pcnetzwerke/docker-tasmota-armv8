@@ -1,13 +1,15 @@
 FROM python:latest
 
 LABEL description="Docker Container with a complete build environment for Tasmota using PlatformIO" \
-      version="11.1" \
+      version="12.3" \
       maintainer="blakadder_" \
       organization="https://github.com/tasmota"       
 
 # Install platformio. 
 RUN linux32 pip install --upgrade pip &&\ 
     linux32 pip install --upgrade platformio
+
+RUN pip install --upgrade zopfli
 
 # Init project
 COPY init_pio_tasmota /init_pio_tasmota
