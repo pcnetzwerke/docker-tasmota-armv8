@@ -1,7 +1,7 @@
 FROM python:latest
 
 LABEL description="Docker Container with a complete build environment for Tasmota using PlatformIO" \
-      version="12.3" \
+      version="13.0" \
       maintainer="blakadder_" \
       organization="https://github.com/tasmota"       
 
@@ -16,15 +16,15 @@ COPY init_pio_tasmota /init_pio_tasmota
 
 # Install project dependencies using a init project.
 RUN cd /init_pio_tasmota &&\ 
+    linux32 platformio upgrade &&\
+    linux32 pio pkg update &&\
     linux32 pio run &&\
     cd ../ &&\ 
     rm -fr init_pio_tasmota &&\ 
     cp -r /root/.platformio / &&\ 
-    chmod -R 777 /.platformio
+    mkdir /.cache /.local &&\
+    chmod -R 777 /.platformio /usr/local/lib /.cache /.local
 
-RUN platformio upgrade
-
-RUN platformio platform update
 
 COPY entrypoint.sh /entrypoint.sh
 
