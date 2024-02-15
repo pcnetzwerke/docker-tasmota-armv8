@@ -29,5 +29,6 @@ RUN cd /init_pio_tasmota &&\
 COPY entrypoint.sh /entrypoint.sh
 COPY entrypoint.sh.org /entrypoint.sh.org
 
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+RUN chmod +x entrypoint.sh.org
 
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
